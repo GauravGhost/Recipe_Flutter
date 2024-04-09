@@ -7,7 +7,11 @@ class HttpService {
   factory HttpService() {
     return _singleton;
   }
-  HttpService._internal();
+
+  HttpService._internal() {
+    setup();
+  }
+
   Future<void> setup({String? bearerToken}) async {
     final headers = {
       'Content-Type': 'application/json',
@@ -22,5 +26,15 @@ class HttpService {
     );
 
     _dio.options = options;
+  }
+
+  Future<Response?> post(String path, Map data) async {
+    try {
+      final response = await _dio.post(path, data: data);
+      return response;
+    } catch (err) {
+      print(err);
+      return null;
+    }
   }
 }

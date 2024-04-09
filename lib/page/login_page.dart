@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextFormField(
-              initialValue: "gyanendra",
+              initialValue: "kminchelle",
               onSaved: (value) {
                 setState(() {
                   username = value;
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
               decoration: const InputDecoration(hintText: "Username"),
             ),
             TextFormField(
-              initialValue: "gyanendra",
+              initialValue: "0lelplR",
               obscureText: true,
               onSaved: (value) {
                 setState(() {
