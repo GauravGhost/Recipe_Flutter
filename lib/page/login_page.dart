@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/services/auth_service.dart';
+import 'package:status_alert/status_alert.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -97,7 +98,19 @@ class _LoginPageState extends State<LoginPage> {
           if (_loginFormKey.currentState?.validate() ?? false) {
             _loginFormKey.currentState?.save();
             bool result = await AuthService().login(username!, password!);
-            print("$result");
+            if (result) {
+            } else {
+              StatusAlert.show(
+                context,
+                duration: const Duration(seconds: 2),
+                title: 'Login Failed',
+                subtitle: 'Please Try again',
+                configuration: const IconConfiguration(
+                  icon: Icons.error,
+                ),
+                maxWidth: 260
+              );
+            }
           }
         },
         child: const Text("Login"),
