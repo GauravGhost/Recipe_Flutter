@@ -14,7 +14,6 @@ class AuthService {
     try {
       var response = await _httpService
           .post("auth/login", {"username": username, "password": password});
-      print(response?.statusCode);
       if (response?.statusCode == 200 && response?.data != null) {
         user = User.fromJson(response!.data);
         HttpService().setup(bearerToken: user!.token);

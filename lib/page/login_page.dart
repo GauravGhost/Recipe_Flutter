@@ -11,7 +11,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _loginFormKey = GlobalKey();
-
   String? username, password;
   @override
   Widget build(BuildContext context) {
@@ -99,17 +98,16 @@ class _LoginPageState extends State<LoginPage> {
             _loginFormKey.currentState?.save();
             bool result = await AuthService().login(username!, password!);
             if (result) {
+              Navigator.pushReplacementNamed(context, "/home");
             } else {
-              StatusAlert.show(
-                context,
-                duration: const Duration(seconds: 2),
-                title: 'Login Failed',
-                subtitle: 'Please Try again',
-                configuration: const IconConfiguration(
-                  icon: Icons.error,
-                ),
-                maxWidth: 260
-              );
+              StatusAlert.show(context,
+                  duration: const Duration(seconds: 2),
+                  title: 'Login Failed',
+                  subtitle: 'Please Try again',
+                  configuration: const IconConfiguration(
+                    icon: Icons.error,
+                  ),
+                  maxWidth: 260);
             }
           }
         },

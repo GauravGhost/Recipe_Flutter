@@ -16,6 +16,9 @@ class HttpService {
     final headers = {
       'Content-Type': 'application/json',
     };
+    if (bearerToken != null) {
+      headers['Authorization'] = 'Bearer $bearerToken';
+    }
     final options = BaseOptions(
       headers: headers,
       baseUrl: API_BASE_URL,
@@ -36,5 +39,15 @@ class HttpService {
       print(err);
       return null;
     }
+  }
+
+  Future<Response?> get(String path) async {
+    try {
+      final response = _dio.get(path);
+      return response;
+    } catch (err) {
+      print(err);
+    }
+    return null;
   }
 }
